@@ -1,7 +1,8 @@
-package com.dohieu19999.firebasechat
+package com.dohieu19999.firebasechat.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.dohieu19999.firebasechat.R
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

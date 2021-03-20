@@ -3,6 +3,7 @@
     package="com.dohieu19999.firebasechat">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,8 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseChat">
-        <activity android:name=".HomeActivity"></activity>
-        <activity android:name=".SingUpActivity">
+        <activity android:name=".activity.UsersActivity"></activity>
+        <activity android:name=".activity.SingUpActivity" />
+        <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

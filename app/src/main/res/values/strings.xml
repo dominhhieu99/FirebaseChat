@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">FirebaseChat</string>
-    <string name="label_sign_ip">Sign Up</string>
-    <string name="btn_sign_ip">Sign Up</string>
+    <string name="label_sign_up">Sign Up</string>
+    <string name="label_sign_in">Sign In</string>
+    <string name="btn_sign_up">Sign Up</string>
     <string name="btn_login">Login</string>
     <string name="enter_name">Enter Name</string>
     <string name="enter_email">Enter Email</string>
     <string name="enter_password">Enter PassWord</string>
     <string name="enter_confirm_password">Enter Confirm PassWord</string>
+    <string name="label_message">Message</string>
 </resources>

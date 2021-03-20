@@ -1,10 +1,10 @@
-package com.dohieu19999.firebasechat
+package com.dohieu19999.firebasechat.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
+import com.dohieu19999.firebasechat.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -43,6 +43,10 @@ class SingUpActivity : AppCompatActivity() {
             }
             registerUser(userName,email,password)
         }
+        btnLogin.setOnClickListener {
+            var intent = Intent(this@SingUpActivity, LoginActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
@@ -58,13 +62,20 @@ class SingUpActivity : AppCompatActivity() {
                     val hashMap: HashMap<String, String> = HashMap()
                     hashMap.put("userId", userId)
                     hashMap.put("userName", userName)
+                    hashMap.put("emali", email)
                     hashMap.put("profileImage", "")
 
                     databaseReference.setValue(hashMap).addOnCompleteListener(this) {
                         if (it.isSuccessful) {
-//                            opne homne
-                            var intent = Intent(this@SingUpActivity, HomeActivity::class.java)
+//                            open homne
+                            etName.setText("")
+                            etEmail.setText("")
+                            etPassword.setText("")
+                            etConfirmPassword.setText("")
+                            var intent = Intent(this@SingUpActivity, UsersActivity::class.java)
                             startActivity(intent)
+                        }else{
+                            Toast.makeText(applicationContext, ""+it.toString(), Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
