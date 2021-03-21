@@ -9,4 +9,5 @@
     <string name="enter_password">Enter PassWord</string>
     <string name="enter_confirm_password">Enter Confirm PassWord</string>
     <string name="label_message">Message</string>
+    <string name="label_profile">Profile</string>
 </resources>

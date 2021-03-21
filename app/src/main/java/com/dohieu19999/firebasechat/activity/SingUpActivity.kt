@@ -26,26 +26,33 @@ class SingUpActivity : AppCompatActivity() {
             val email = etEmail.text.toString()
             val password = etPassword.text.toString()
             val confirmPassword = etConfirmPassword.text.toString()
-            if (userName.isNullOrEmpty()){
-                Toast.makeText(applicationContext, "username is required", Toast.LENGTH_SHORT).show()
+            if (userName.isNullOrEmpty()) {
+                Toast.makeText(applicationContext, "username is required", Toast.LENGTH_SHORT)
+                    .show()
             }
-            if (email.isNullOrEmpty()){
+            if (email.isNullOrEmpty()) {
                 Toast.makeText(applicationContext, "email is required", Toast.LENGTH_SHORT).show()
             }
-            if (password.isNullOrEmpty()){
-                Toast.makeText(applicationContext, "password is required", Toast.LENGTH_SHORT).show()
+            if (password.isNullOrEmpty()) {
+                Toast.makeText(applicationContext, "password is required", Toast.LENGTH_SHORT)
+                    .show()
             }
-            if (confirmPassword.isNullOrEmpty()){
-                Toast.makeText(applicationContext, "confirmPassword is required", Toast.LENGTH_SHORT).show()
+            if (confirmPassword.isNullOrEmpty()) {
+                Toast.makeText(
+                    applicationContext,
+                    "confirmPassword is required",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-            if (password != confirmPassword){
+            if (password != confirmPassword) {
                 Toast.makeText(applicationContext, "password not match", Toast.LENGTH_SHORT).show()
             }
-            registerUser(userName,email,password)
+            registerUser(userName, email, password)
         }
         btnLogin.setOnClickListener {
             var intent = Intent(this@SingUpActivity, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
     }
@@ -74,8 +81,13 @@ class SingUpActivity : AppCompatActivity() {
                             etConfirmPassword.setText("")
                             var intent = Intent(this@SingUpActivity, UsersActivity::class.java)
                             startActivity(intent)
-                        }else{
-                            Toast.makeText(applicationContext, ""+it.toString(), Toast.LENGTH_SHORT).show()
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                applicationContext,
+                                "" + it.toString(),
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 }
