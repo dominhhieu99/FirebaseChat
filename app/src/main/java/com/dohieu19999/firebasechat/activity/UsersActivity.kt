@@ -1,11 +1,13 @@
 package com.dohieu19999.firebasechat.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.dohieu19999.firebasechat.R
 import com.dohieu19999.firebasechat.adapter.UserAdapter
 import com.dohieu19999.firebasechat.model.User
@@ -24,9 +26,16 @@ class UsersActivity : AppCompatActivity() {
 
 
         userRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+
+
+        imgBack.setOnClickListener {
+            onBackPressed()
+        }
+        imdProfile.setOnClickListener {
+            var intent = Intent(this@UsersActivity, ProfileActivity::class.java)
+            startActivity(intent)
+        }
         getUsersList()
-
-
     }
 
     fun getUsersList() {
@@ -44,6 +53,12 @@ class UsersActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userList.clear()
                 val currentUser = snapshot.getValue(User::class.java)
+                if (currentUser!!.userImage == "") {
+                    imdProfile.setImageResource(R.drawable.ic_launcher_background)
+                } else {
+                    Glide.with(this@UsersActivity).load(currentUser!!.userImage).into(imdProfile)
+                }
+
 
 
                 for (dataSnapShot: DataSnapshot in snapshot.children) {
