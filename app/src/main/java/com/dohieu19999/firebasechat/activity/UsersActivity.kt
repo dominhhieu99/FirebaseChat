@@ -33,28 +33,6 @@ class UsersActivity : AppCompatActivity() {
         userRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 
 
-        firebaseUser = FirebaseAuth.getInstance().currentUser!!
-
-        databaseReference =
-            FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.uid)
-
-        databaseReference.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(applicationContext, error.message, Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val user = snapshot.getValue(User::class.java)
-                if (user!!.profileImage == "") {
-                    userImage.setImageResource(R.drawable.ic_launcher_background)
-                } else {
-                    Glide.with(applicationContext).load(user.profileImage).into(userImage)
-                }
-
-            }
-
-        })
-
         imgBack.setOnClickListener {
             onBackPressed()
         }

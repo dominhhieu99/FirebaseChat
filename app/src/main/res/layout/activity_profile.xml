@@ -66,8 +66,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:maxLines="1"
                 android:background="@color/white"
+                android:maxLines="1"
                 android:textAlignment="center"
                 android:textSize="@dimen/_28sdp" />
 
@@ -79,14 +79,15 @@
                 android:layout_margin="@dimen/_10sdp"
                 android:background="@color/common_google_signin_btn_text_dark_focused"
                 android:text="@string/btn_save"
-                android:visibility="gone"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
             <ProgressBar
+                android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/progressBar"
-                android:visibility="gone"
-                android:indeterminateTint="@color/colorPrimaryDark"/>
+                android:indeterminateTint="@color/colorPrimaryDark"
+                android:visibility="gone" />
 
         </LinearLayout>
 

@@ -96,8 +96,8 @@ class ProfileActivity : AppCompatActivity() {
             ref.putFile(firePath!!).addOnSuccessListener {
 
                 val hashMap: HashMap<String, String> = HashMap()
-                hashMap.put("userName",etUserName.text.toString())
-                hashMap.put("profileImage",firePath.toString())
+                hashMap.put("userName", etUserName.text.toString())
+                hashMap.put("profileImage", firePath.toString())
                 databaseReference.updateChildren(hashMap as Map<String, Any>)
                 progressBar.visibility = View.GONE
                 Toast.makeText(applicationContext, "Uploaded", Toast.LENGTH_SHORT).show()

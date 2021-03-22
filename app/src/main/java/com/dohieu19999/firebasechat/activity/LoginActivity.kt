@@ -26,7 +26,8 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-        }catch (e:Exception){}
+        } catch (e: Exception) {
+        }
 
 
 
