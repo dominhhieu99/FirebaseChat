@@ -9,6 +9,7 @@ import com.dohieu19999.firebasechat.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
+import java.lang.Exception
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -18,13 +19,16 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         auth = FirebaseAuth.getInstance()
-        firebaseUser = auth.currentUser!!
+        try {
+            firebaseUser = auth.currentUser!!
+            if (firebaseUser != null) {
+                var intent = Intent(this@LoginActivity, UsersActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }catch (e:Exception){}
 
-        if (firebaseUser != null) {
-            var intent = Intent(this@LoginActivity, UsersActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+
 
         etEmail.setText("dohieu19999@gmail.com")
         etPassword.setText("123456")

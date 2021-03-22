@@ -14,10 +14,15 @@ import com.dohieu19999.firebasechat.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_users.*
+import kotlinx.android.synthetic.main.activity_users.imgBack
 
 class UsersActivity : AppCompatActivity() {
     var userList = ArrayList<User>()
+    private lateinit var firebaseUser: FirebaseUser
+    private lateinit var databaseReference: DatabaseReference
 
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +32,28 @@ class UsersActivity : AppCompatActivity() {
 
         userRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 
+
+        firebaseUser = FirebaseAuth.getInstance().currentUser!!
+
+        databaseReference =
+            FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.uid)
+
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(applicationContext, error.message, Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val user = snapshot.getValue(User::class.java)
+                if (user!!.profileImage == "") {
+                    userImage.setImageResource(R.drawable.ic_launcher_background)
+                } else {
+                    Glide.with(applicationContext).load(user.profileImage).into(userImage)
+                }
+
+            }
+
+        })
 
         imgBack.setOnClickListener {
             onBackPressed()
@@ -53,10 +80,10 @@ class UsersActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userList.clear()
                 val currentUser = snapshot.getValue(User::class.java)
-                if (currentUser!!.userImage == "") {
+                if (currentUser!!.profileImage == "") {
                     imdProfile.setImageResource(R.drawable.ic_launcher_background)
                 } else {
-                    Glide.with(this@UsersActivity).load(currentUser!!.userImage).into(imdProfile)
+                    Glide.with(this@UsersActivity).load(currentUser!!.profileImage).into(imdProfile)
                 }
 
 
